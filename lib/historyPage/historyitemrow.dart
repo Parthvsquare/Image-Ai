@@ -5,10 +5,10 @@ class HistoryItemsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          //margin: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 5),
+          margin: EdgeInsets.only(left: 10, right: 5),
           width: 70,
           height: 70,
           decoration: BoxDecoration(
@@ -24,7 +24,7 @@ class HistoryItemsRow extends StatelessWidget {
           ),
         ),
         Container(
-          //margin: EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 10),
+          margin: EdgeInsets.only(left: 5, right: 10),
           padding: EdgeInsets.only(top: 25),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2),

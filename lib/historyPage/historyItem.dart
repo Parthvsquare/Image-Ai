@@ -13,9 +13,10 @@ class _HistoryItemsState extends State<HistoryItems> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+//----------------------------------The title of the table----------------------------------//
         Container(
           alignment: Alignment.topLeft,
-          margin: EdgeInsets.only(top: 10, left: 15, bottom: 5),
+          margin: EdgeInsets.only(top: 15, left: 15, bottom: 5),
           child: Text(
             'History',
             style: TextStyle(fontSize: 20),
