@@ -15,8 +15,6 @@ class _ReviewItemRowState extends State<ReviewItemRow> {
 //----------------------------------This is the Name of that character ----------------------------------//
         Container(
           margin: EdgeInsets.only(left: 10),
-          padding: EdgeInsets.only(top: 25),
-          height: 70,
           child: Text(
             'Human',
             style: TextStyle(fontSize: 14),
@@ -25,13 +23,12 @@ class _ReviewItemRowState extends State<ReviewItemRow> {
 //----------------------------------This is the percentage part----------------------------------//
         Container(
           margin: EdgeInsets.only(right: 60),
-          padding: EdgeInsets.only(top: 25),
           child: Text(
             '0.78',
             style: TextStyle(fontSize: 14),
             textAlign: TextAlign.center,
           ),
-          height: 70,
+          //height: 70,
         ),
       ],
     );

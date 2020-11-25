@@ -12,7 +12,7 @@ class _ReviewBoxState extends State<ReviewBox> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(left: 30, right: 30, bottom: 50),
+      margin: EdgeInsets.only(left: 25, right: 25, bottom: 50),
       child: ReviewItem(),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2),

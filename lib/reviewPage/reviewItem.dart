@@ -15,7 +15,7 @@ class _ReviewItemState extends State<ReviewItem> {
       children: [
         Container(
           alignment: Alignment.topLeft,
-          margin: EdgeInsets.only(top: 10, left: 15, bottom: 5),
+          margin: EdgeInsets.only(top: 15, left: 15, bottom: 5),
           child: Text(
             'Review',
             style: TextStyle(fontSize: 20),
@@ -67,6 +67,7 @@ class _ReviewItemState extends State<ReviewItem> {
             ),
           ),
           child: ReviewItemRow(),
+          height: 50,
         ),
         Container(
           margin: EdgeInsets.only(bottom: 10, left: 20, right: 20),
@@ -77,6 +78,7 @@ class _ReviewItemState extends State<ReviewItem> {
             ),
           ),
           child: ReviewItemRow(),
+          height: 50,
         ),
       ],
     );

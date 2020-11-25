@@ -38,7 +38,7 @@ class HistoryItemsRow extends StatelessWidget {
             style: TextStyle(fontSize: 14),
             textAlign: TextAlign.center,
           ),
-          width: 250,
+          width: 260,
           height: 70,
         ),
       ],
