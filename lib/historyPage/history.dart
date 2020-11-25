@@ -24,3 +24,4 @@ class _HistoryState extends State<History> {
     );
   }
 }
+//this widget is used to create a box

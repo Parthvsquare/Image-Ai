@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:test1/galleryImage.dart';
 import 'dart:io';
+//----------------------------------file imports----------------------------------//
 import 'constant.dart';
 import './historyPage/history.dart';
 import 'topPart.dart';

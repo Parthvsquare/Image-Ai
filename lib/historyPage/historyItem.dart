@@ -21,6 +21,7 @@ class _HistoryItemsState extends State<HistoryItems> {
             style: TextStyle(fontSize: 20),
           ),
         ),
+//----------------------------------This is used to create a line----------------------------------//
         Container(
           margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
           height: 1,

@@ -15,7 +15,7 @@ class HistoryItemsRow extends StatelessWidget {
             borderRadius: BorderRadius.circular(2),
             color: Colors.white,
             boxShadow: [
-              BoxShadow(color: PrimaryColor, spreadRadius: 1),
+              BoxShadow(color: PrimaryColor, spreadRadius: 0.6),
             ],
             image: DecorationImage(
               image: AssetImage("assets/Object-detection.png"),
@@ -25,7 +25,9 @@ class HistoryItemsRow extends StatelessWidget {
         ),
         Container(
           //margin: EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 10),
+          padding: EdgeInsets.only(top: 25),
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(2),
             border: Border.all(
               width: 1,
               color: PrimaryColor,
