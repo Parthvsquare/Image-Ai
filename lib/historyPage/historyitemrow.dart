@@ -45,3 +45,4 @@ class HistoryItemsRow extends StatelessWidget {
     );
   }
 }
+//these are the row which contain a picture and it's best prediction
