@@ -15,8 +15,11 @@ class _ReviewItemRowState extends State<ReviewItemRow> {
 //----------------------------------This is the Name of that character ----------------------------------//
         Container(
           margin: EdgeInsets.only(left: 10),
+          width: 200,
           child: Text(
-            'Human',
+            'asdfkjgkjsbgkjn diguasdnflkj alsjdflkjasd hsjfghkjsdfg',
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
             style: TextStyle(fontSize: 14),
           ),
         ),
