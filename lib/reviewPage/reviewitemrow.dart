@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import '../constant.dart';
 
-class ReviewItemRow extends StatefulWidget {
-  @override
-  _ReviewItemRowState createState() => _ReviewItemRowState();
-}
-
-class _ReviewItemRowState extends State<ReviewItemRow> {
+class ReviewItemRow extends StatelessWidget {
+  final List results;
+  ReviewItemRow(this.results);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,7 +14,8 @@ class _ReviewItemRowState extends State<ReviewItemRow> {
           margin: EdgeInsets.only(left: 10),
           width: 200,
           child: Text(
-            'asdfkjgkjsbgkjn diguasdnflkj alsjdflkjasd hsjfghkjsdfg',
+            "${results}",
+            //idhar tensor flow dalna he teko
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             style: TextStyle(fontSize: 14),

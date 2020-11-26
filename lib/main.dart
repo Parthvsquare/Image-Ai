@@ -72,7 +72,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         child: Column(
           children: [
             theImageLoc == null ? TopPart() : GalleryImage(theImageLoc),
-            theImageLoc == null ? History() : ReviewBox(),
+            theImageLoc == null
+                ? History()
+                : ReviewBox(['this is ', 'alksjdf', 'asdfh']),
           ],
         ),
       ),

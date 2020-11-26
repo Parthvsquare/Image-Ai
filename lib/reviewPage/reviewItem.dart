@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import '../constant.dart';
 import 'reviewitemrow.dart';
 
-class ReviewItem extends StatefulWidget {
-  @override
-  _ReviewItemState createState() => _ReviewItemState();
-}
-
-class _ReviewItemState extends State<ReviewItem> {
+class ReviewItem extends StatelessWidget {
+  final List results;
+  ReviewItem(this.results);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -66,7 +63,7 @@ class _ReviewItemState extends State<ReviewItem> {
               color: PrimaryColor,
             ),
           ),
-          child: ReviewItemRow(),
+          child: ReviewItemRow(results),
           height: 50,
         ),
         Container(
@@ -77,7 +74,7 @@ class _ReviewItemState extends State<ReviewItem> {
               color: PrimaryColor,
             ),
           ),
-          child: ReviewItemRow(),
+          child: ReviewItemRow(results),
           height: 50,
         ),
       ],
