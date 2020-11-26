@@ -13,19 +13,20 @@ class ReviewItemRow extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(left: 10),
           width: 200,
-          child: Text(
-            "${results}",
-            //idhar tensor flow dalna he teko
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-            style: TextStyle(fontSize: 14),
-          ),
+
+          // child: Text(
+          //   "${results}",
+          //   //idhar tensor flow dalna he teko
+          //   overflow: TextOverflow.ellipsis,
+          //   maxLines: 2,
+          //   style: TextStyle(fontSize: 14),
+          // ),
         ),
 //----------------------------------This is the percentage part----------------------------------//
         Container(
           margin: EdgeInsets.only(right: 60),
           child: Text(
-            '0.78',
+            "${results}",
             style: TextStyle(fontSize: 14),
             textAlign: TextAlign.center,
           ),

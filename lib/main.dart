@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:tflite/tflite.dart';
 //----------------------------------file imports----------------------------------//
 import 'constant.dart';
 import './historyPage/history.dart';
@@ -35,15 +36,54 @@ class MyStatefulWidget extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   File theImageLoc;
+  List _results;
+
+  @override
+  void initState() {
+    super.initState();
+    loadModel();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  Future loadModel() async {
+    Tflite.close();
+    String res;
+    res = await Tflite.loadModel(
+      model: "assets/mobilenet_v1_1.0_224.tflite",
+      labels: "assets/mobilenet_v1_1.0_224.txt",
+    );
+    print(res);
+  }
 
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
+    imageClassification(image);
     setState(() {
       theImageLoc = image;
     });
     print(theImageLoc);
   }
+
+  Future imageClassification(File theImageLoc) async {
+    // Run tensorflowlite image classification model on the image
+    final List results = await Tflite.runModelOnImage(
+      path: theImageLoc.path,
+      numResults: 3, // top 3 results only!
+      threshold: 0.05,
+      imageMean: 127.5,
+      imageStd: 127.5,
+    );
+    setState(() {
+      _results = results;
+    });
+    print(_results);
+  }
+
+  // List tensorflowList = [_results, res];
 
 //----------------------------------The function needed to make noti bar black----------------------------------//
   Widget build(BuildContext context) {
@@ -72,9 +112,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         child: Column(
           children: [
             theImageLoc == null ? TopPart() : GalleryImage(theImageLoc),
-            theImageLoc == null
-                ? History()
-                : ReviewBox(['this is ', 'alksjdf', 'asdfh']),
+            theImageLoc == null ? History() : ReviewBox(_results),
           ],
         ),
       ),
