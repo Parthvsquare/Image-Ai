@@ -5,8 +5,8 @@ import 'reviewItem.dart';
 class ReviewBox extends StatelessWidget {
   // final galleryImage;
   // ReviewBox(this.galleryImage);
-  final name;
-  final confidence;
+  final String name;
+  final String confidence;
   ReviewBox(this.name, this.confidence);
   @override
   Widget build(BuildContext context) {

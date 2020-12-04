@@ -10,7 +10,8 @@ import './historyPage/history.dart';
 import 'topPart.dart';
 import 'bottomIcons.dart';
 import 'galleryImage.dart';
-//import './reviewPage/reviewBox.dart';
+import './reviewPage/reviewBox.dart';
+import 'listClass.dart';
 
 void main() => runApp(MyApp());
 
@@ -54,6 +55,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     var resultant = await Tflite.loadModel(
       labels: "assets/mobilenet_v1_1.0_224.txt",
       model: "assets/mobilenet_v1_1.0_224.tflite",
+      numThreads: 4,
     );
     print("Result after loading model: $resultant");
   }
@@ -61,7 +63,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   applyModelOnImage(File file) async {
     var res = await Tflite.runModelOnImage(
       path: file.path,
-      numResults: 6,
+      numResults: 3,
       threshold: 0.05,
       imageMean: 127.5,
       imageStd: 127.5,
@@ -70,10 +72,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     setState(() {
       _result = res;
       String str = _result[0]["label"];
-      _name = str.substring(2);
+      _name = str;
       _confidence = _result != null
           ? (_result[0]['confidence'] * 100.0).toString().substring(0, 2) + "%"
-          : "this is shit";
+          : "";
+      aList(_name, _confidence);
     });
   }
 
@@ -110,11 +113,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         child: Column(
           children: [
             imageURI == null ? TopPart() : GalleryImage(imageURI),
-            imageURI == null
-                ? History()
-                :
-                //ReviewBox(_name, _confidence)
-                Text("Name: $_name and the Confidence $_confidence"),
+            imageURI == null ? History() : ReviewBox(_name, _confidence),
+            //Text("Name: $_name and the Confidence $_confidence"),
           ],
         ),
       ),

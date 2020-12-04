@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constant.dart';
+import 'package:test1/listClass.dart';
+import '../listclass.dart';
 
 class ReviewItemRow extends StatelessWidget {
   final name;
@@ -27,6 +28,7 @@ class ReviewItemRow extends StatelessWidget {
           margin: EdgeInsets.only(right: 60),
           child: Text(
             '$confidence',
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(fontSize: 14),
             textAlign: TextAlign.center,
           ),
