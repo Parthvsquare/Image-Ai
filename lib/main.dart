@@ -76,7 +76,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       _confidence = _result != null
           ? (_result[0]['confidence'] * 100.0).toString().substring(0, 2) + "%"
           : "";
-      aList(_name, _confidence);
+      //aList(_name, _confidence);
     });
   }
 
