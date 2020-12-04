@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:tflite/tflite.dart';
 //----------------------------------file imports----------------------------------//
 import 'constant.dart';
 import './historyPage/history.dart';
@@ -35,6 +36,10 @@ class MyStatefulWidget extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   File theImageLoc;
+  List theListOfOutput;
+  String theConfidence = '';
+  String theName = '';
+  String theNumbers = '';
 
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -43,6 +48,42 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       theImageLoc = image;
     });
     print(theImageLoc);
+  }
+
+//----------------------------------This is the function need for tensorflow---------------------------------//
+  loadMyModel() async {
+    var resultant = await Tflite.loadModel(
+      model: "assets/mobilenet_v1_1.0_224.tflite",
+      labels: "assets/mobilenet_v1_1.0_224.txt",
+    );
+    print("Result after loading model: $resultant");
+  }
+
+  applyModelOnImage(File file) async {
+    var res = await Tflite.runModelOnImage(
+      path: theImageLoc.path,
+      numResults: 3,
+      threshold: 0.05,
+      imageMean: 127.5,
+      imageStd: 127.5,
+    );
+    setState(() {
+      theListOfOutput = res;
+      String str = theListOfOutput[0]["label"];
+      theName = str.substring(2);
+      theConfidence = theListOfOutput != null
+          ? (theListOfOutput[0]['confidence'] * 100.0)
+                  .toString()
+                  .substring(0, 2) +
+              "%"
+          : "this is shit";
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadMyModel();
   }
 
 //----------------------------------The function needed to make noti bar black----------------------------------//
@@ -74,7 +115,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             theImageLoc == null ? TopPart() : GalleryImage(theImageLoc),
             theImageLoc == null
                 ? History()
-                : ReviewBox(['this is ', 'alksjdf', 'asdfh']),
+                :
+                //ReviewBox(theName, theConfidence)
+                Text("Name: $theName and the Confidence $theConfidence"),
           ],
         ),
       ),

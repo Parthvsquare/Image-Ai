@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import '../constant.dart';
 
 class ReviewItemRow extends StatelessWidget {
-  final List results;
-  ReviewItemRow(this.results);
+  final name;
+  final confidence;
+  ReviewItemRow(this.name, this.confidence);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,7 +15,7 @@ class ReviewItemRow extends StatelessWidget {
           margin: EdgeInsets.only(left: 10),
           width: 200,
           child: Text(
-            "${results}",
+            '$name',
             //idhar tensor flow dalna he teko
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
@@ -25,7 +26,7 @@ class ReviewItemRow extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(right: 60),
           child: Text(
-            '0.78',
+            '$confidence',
             style: TextStyle(fontSize: 14),
             textAlign: TextAlign.center,
           ),

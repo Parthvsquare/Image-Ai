@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import '../constant.dart';
 import 'reviewitemrow.dart';
+import 'package:image_picker/image_picker.dart';
+//import 'dart:io';
+import 'package:tflite/tflite.dart';
 
 class ReviewItem extends StatelessWidget {
-  final List results;
-  ReviewItem(this.results);
+  // final List results;
+  // ReviewItem(this.results);
+  final name;
+  final confidence;
+  ReviewItem(this.name, this.confidence);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -63,7 +69,7 @@ class ReviewItem extends StatelessWidget {
               color: PrimaryColor,
             ),
           ),
-          child: ReviewItemRow(results),
+          child: ReviewItemRow(name, confidence),
           height: 50,
         ),
         Container(
@@ -74,7 +80,7 @@ class ReviewItem extends StatelessWidget {
               color: PrimaryColor,
             ),
           ),
-          child: ReviewItemRow(results),
+          child: ReviewItemRow(name, confidence),
           height: 50,
         ),
       ],
