@@ -45,6 +45,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     var tempStore = await ImagePicker().getImage(source: ImageSource.gallery);
     setState(() {
       imageURI = File(tempStore.path);
+      applyModelOnImage(File(tempStore.path));
     });
   }
 
@@ -68,9 +69,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     setState(() {
       _result = res;
       String str = _result[0]["label"];
-      _name = str.substring(1);
+      _name = str.substring(0);
       _confidence = _result != null
-          ? (_result[0]['confidence'] * 100.0).toString().substring(0, 1) + "%"
+          ? (_result[0]['confidence'] * 100.0).toString().substring(0, 2) + "%"
           : "this is shit";
     });
   }
