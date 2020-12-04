@@ -10,7 +10,7 @@ import './historyPage/history.dart';
 import 'topPart.dart';
 import 'bottomIcons.dart';
 import 'galleryImage.dart';
-import './reviewPage/reviewBox.dart';
+//import './reviewPage/reviewBox.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,47 +35,42 @@ class MyStatefulWidget extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  File theImageLoc;
-  List theListOfOutput;
-  String theConfidence = '';
-  String theName = '';
+  File imageURI;
+  List _result;
+  String _confidence = '';
+  String _name = '';
   String theNumbers = '';
-
-  Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
+//----------------------------------This is the function needed for image classification---------------------------------//
+  getImageFromGallery() async {
+    var tempStore = await ImagePicker().getImage(source: ImageSource.gallery);
     setState(() {
-      theImageLoc = image;
+      imageURI = File(tempStore.path);
     });
-    print(theImageLoc);
   }
 
-//----------------------------------This is the function need for tensorflow---------------------------------//
+//----------------------------------This is the function needed for tensorflow---------------------------------//
   loadMyModel() async {
     var resultant = await Tflite.loadModel(
-      model: "assets/mobilenet_v1_1.0_224.tflite",
       labels: "assets/mobilenet_v1_1.0_224.txt",
+      model: "assets/mobilenet_v1_1.0_224.tflite",
     );
     print("Result after loading model: $resultant");
   }
 
   applyModelOnImage(File file) async {
     var res = await Tflite.runModelOnImage(
-      path: theImageLoc.path,
-      numResults: 3,
+      path: file.path,
+      numResults: 2,
       threshold: 0.05,
       imageMean: 127.5,
       imageStd: 127.5,
     );
     setState(() {
-      theListOfOutput = res;
-      String str = theListOfOutput[0]["label"];
-      theName = str.substring(2);
-      theConfidence = theListOfOutput != null
-          ? (theListOfOutput[0]['confidence'] * 100.0)
-                  .toString()
-                  .substring(0, 2) +
-              "%"
+      _result = res;
+      String str = _result[0]["label"];
+      _name = str.substring(1);
+      _confidence = _result != null
+          ? (_result[0]['confidence'] * 100.0).toString().substring(0, 1) + "%"
           : "this is shit";
     });
   }
@@ -112,12 +107,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            theImageLoc == null ? TopPart() : GalleryImage(theImageLoc),
-            theImageLoc == null
+            imageURI == null ? TopPart() : GalleryImage(imageURI),
+            imageURI == null
                 ? History()
                 :
-                //ReviewBox(theName, theConfidence)
-                Text("Name: $theName and the Confidence $theConfidence"),
+                //ReviewBox(_name, _confidence)
+                Text("Name: $_name and the Confidence $_confidence"),
           ],
         ),
       ),
@@ -133,7 +128,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         width: 65.0,
         child: FittedBox(
           child: FloatingActionButton(
-            onPressed: getImage,
+            onPressed: () {
+              getImageFromGallery();
+            },
             child: Icon(
               Icons.add_rounded,
               color: PrimaryAssentColor,
