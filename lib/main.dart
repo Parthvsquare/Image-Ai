@@ -61,15 +61,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   applyModelOnImage(File file) async {
     var res = await Tflite.runModelOnImage(
       path: file.path,
-      numResults: 2,
+      numResults: 6,
       threshold: 0.05,
       imageMean: 127.5,
       imageStd: 127.5,
     );
+    print(res);
     setState(() {
       _result = res;
       String str = _result[0]["label"];
-      _name = str.substring(0);
+      _name = str.substring(2);
       _confidence = _result != null
           ? (_result[0]['confidence'] * 100.0).toString().substring(0, 2) + "%"
           : "this is shit";
