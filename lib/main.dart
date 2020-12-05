@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:tflite/tflite.dart';
 //----------------------------------file imports----------------------------------//
 import 'constant.dart';
 import './historyPage/history.dart';
@@ -10,6 +11,7 @@ import 'topPart.dart';
 import 'bottomIcons.dart';
 import 'galleryImage.dart';
 import './reviewPage/reviewBox.dart';
+import 'listClass.dart';
 
 void main() => runApp(MyApp());
 
@@ -34,15 +36,54 @@ class MyStatefulWidget extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  File theImageLoc;
-
-  Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
+  File imageURI;
+  List _result;
+  String _confidence = '';
+  String _name = '';
+  String theNumbers = '';
+//----------------------------------This is the function needed for image classification---------------------------------//
+  getImageFromGallery() async {
+    var tempStore = await ImagePicker().getImage(source: ImageSource.gallery);
     setState(() {
-      theImageLoc = image;
+      imageURI = File(tempStore.path);
+      applyModelOnImage(File(tempStore.path));
     });
-    print(theImageLoc);
+  }
+
+//----------------------------------This is the function needed for tensorflow---------------------------------//
+  loadMyModel() async {
+    var resultant = await Tflite.loadModel(
+      labels: "assets/mobilenet_v1_1.0_224.txt",
+      model: "assets/mobilenet_v1_1.0_224.tflite",
+      numThreads: 4,
+    );
+    print("Result after loading model: $resultant");
+  }
+
+  applyModelOnImage(File file) async {
+    var res = await Tflite.runModelOnImage(
+      path: file.path,
+      numResults: 3,
+      threshold: 0.05,
+      imageMean: 127.5,
+      imageStd: 127.5,
+    );
+    print(res);
+    setState(() {
+      _result = res;
+      String str = _result[0]["label"];
+      _name = str;
+      _confidence = _result != null
+          ? (_result[0]['confidence'] * 100.0).toString().substring(0, 2) + "%"
+          : "";
+      //aList(_name, _confidence);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadMyModel();
   }
 
 //----------------------------------The function needed to make noti bar black----------------------------------//
@@ -71,10 +112,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            theImageLoc == null ? TopPart() : GalleryImage(theImageLoc),
-            theImageLoc == null
-                ? History()
-                : ReviewBox(['this is ', 'alksjdf', 'asdfh']),
+            imageURI == null ? TopPart() : GalleryImage(imageURI),
+            imageURI == null ? History() : ReviewBox(_name, _confidence),
+            //Text("Name: $_name and the Confidence $_confidence"),
           ],
         ),
       ),
@@ -90,7 +130,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         width: 65.0,
         child: FittedBox(
           child: FloatingActionButton(
-            onPressed: getImage,
+            onPressed: () {
+              getImageFromGallery();
+            },
             child: Icon(
               Icons.add_rounded,
               color: PrimaryAssentColor,
