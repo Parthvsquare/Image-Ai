@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:tflite/tflite.dart';
+import 'package:google_fonts/google_fonts.dart';
 //----------------------------------file imports----------------------------------//
 import 'constant.dart';
 import './historyPage/history.dart';
@@ -16,13 +17,14 @@ import 'listClass.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  static const String _title = 'Test1';
+  static const String _title = 'Image AI';
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
       home: MyStatefulWidget(),
+      theme: ThemeData(fontFamily: 'OpenSans'),
     );
   }
 }
