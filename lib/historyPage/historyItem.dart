@@ -32,22 +32,24 @@ class _HistoryItemsState extends State<HistoryItems> {
 //----------------------------------Niche wale repeat kar----------------------------------//
         Container(
           margin: EdgeInsets.only(bottom: 10),
-          child: HistoryItemsRow(),
+          child: HistoryItemsRow('assets/sorrel.jpg', 'Sorrel = 71%'),
         ),
         Container(
-          child: HistoryItemsRow(),
+          child: HistoryItemsRow('assets/cat.jpg', 'Tiger Cat = 86%'),
           margin: EdgeInsets.only(bottom: 10),
         ),
         Container(
-          child: HistoryItemsRow(),
+          child: HistoryItemsRow('assets/norfok.jpg', 'Norfolk terrier = 96%'),
           margin: EdgeInsets.only(bottom: 10),
         ),
         Container(
-          child: HistoryItemsRow(),
+          child:
+              HistoryItemsRow('assets/labpup.jpg', 'Labrador retriever = 99%'),
           margin: EdgeInsets.only(bottom: 10),
         ),
         Container(
-          child: HistoryItemsRow(),
+          child:
+              HistoryItemsRow('assets/golderret.jpg', 'Golden Retriever = 96%'),
           margin: EdgeInsets.only(bottom: 10),
         ),
       ],

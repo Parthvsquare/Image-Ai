@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:tflite/tflite.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 //----------------------------------file imports----------------------------------//
 import 'constant.dart';
 import './historyPage/history.dart';
@@ -12,7 +12,6 @@ import 'topPart.dart';
 import 'bottomIcons.dart';
 import 'galleryImage.dart';
 import './reviewPage/reviewBox.dart';
-import 'listClass.dart';
 
 void main() => runApp(MyApp());
 

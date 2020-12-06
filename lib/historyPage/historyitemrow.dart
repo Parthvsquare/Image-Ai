@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../constant.dart';
 
 class HistoryItemsRow extends StatelessWidget {
+  final photo;
+  final name;
+  HistoryItemsRow(this.photo, this.name);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,10 +18,10 @@ class HistoryItemsRow extends StatelessWidget {
             borderRadius: BorderRadius.circular(2),
             color: Colors.white,
             boxShadow: [
-              BoxShadow(color: PrimaryColor, spreadRadius: 0.6),
+              BoxShadow(color: PrimaryColor, spreadRadius: 0.2),
             ],
             image: DecorationImage(
-              image: AssetImage("assets/Object-detection.png"),
+              image: AssetImage("$photo"),
               fit: BoxFit.contain,
             ),
           ),
@@ -34,7 +37,7 @@ class HistoryItemsRow extends StatelessWidget {
             ),
           ),
           child: Text(
-            'Golden Retriever = 0.78',
+            '$name',
             style: TextStyle(fontSize: 14),
             textAlign: TextAlign.center,
           ),
