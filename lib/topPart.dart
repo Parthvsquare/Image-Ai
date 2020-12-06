@@ -17,7 +17,11 @@ class TopPart extends StatelessWidget {
               ),
           child: Text(
             'Image AI',
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(
+              fontSize: 30,
+              fontFamily: 'OpenSans',
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
         Container(
