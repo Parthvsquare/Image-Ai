@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test1/listClass.dart';
 import '../listclass.dart';
 
 class ReviewItemRow extends StatelessWidget {
