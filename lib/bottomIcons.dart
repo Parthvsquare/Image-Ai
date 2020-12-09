@@ -66,7 +66,7 @@ class BottomIcons extends StatelessWidget {
               ),
               Row(
                 children: <Widget>[
-                  Text('Parth Varanase',
+                  Text('Parth Vanarase',
                   style: TextStyle(
                   fontSize: 25,
                   fontFamily: 'OpenSans',
