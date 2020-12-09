@@ -149,7 +149,7 @@ class BottomIcons extends StatelessWidget {
                   children: <Widget>[
                     Text('Info',
                             style: TextStyle(
-                            fontSize: 25,
+                            fontSize: 30,
                             color: Colors.white,
                             fontFamily: 'OpenSans',
                             fontWeight: FontWeight.w400,),
@@ -168,7 +168,7 @@ class BottomIcons extends StatelessWidget {
                 Row(
                   children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0,0,40,0),
+                    padding: const EdgeInsets.fromLTRB(0,20,40,0),
                     child: Container(
                       width: 70,
                       height: 70,
@@ -182,7 +182,7 @@ class BottomIcons extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 40, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 20, 50, 0),
                     child: Container(
                       width: 30,
                       height: 30,
