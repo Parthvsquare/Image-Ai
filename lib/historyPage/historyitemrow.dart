@@ -27,7 +27,7 @@ class HistoryItemsRow extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 5, right: 10),
+          margin: EdgeInsets.only(left: 5, right: 5),
           padding: EdgeInsets.only(top: 25),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2),
@@ -41,7 +41,7 @@ class HistoryItemsRow extends StatelessWidget {
             style: TextStyle(fontSize: 14),
             textAlign: TextAlign.center,
           ),
-          width: 260,
+          width: 250,
           height: 70,
         ),
       ],
