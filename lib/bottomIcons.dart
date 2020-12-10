@@ -16,11 +16,10 @@ class BottomIcons extends StatelessWidget {
           child: IconButton(
             alignment: Alignment.centerLeft,
             icon: Icon(Icons.info_outline_rounded, color: Colors.white, size: 30),
-            onPressed: () => (() {
-              //somthing need to be written
+            onPressed: () {
+              infoModalBottomSheet(context);
             }),
           ),
-        ),
         Container(
           height: 70,
           margin: EdgeInsets.only(right: 20),
@@ -137,4 +136,84 @@ class BottomIcons extends StatelessWidget {
       );
     });
     }
+    void infoModalBottomSheet(context) {
+     showModalBottomSheet(context: context, builder: (BuildContext bc){
+       return Container(
+          height: MediaQuery.of(context).size.height * .20,
+          color: PrimaryColor,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Text('Info',
+                            style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontFamily: 'OpenSans',
+                            fontWeight: FontWeight.w400,),
+                    ),
+                    Spacer(),
+                    IconButton(
+                    icon: Icon(Icons.cancel, color: Colors.white, size: 25, ), 
+                    onPressed: (){
+                      Navigator.of(context).pop();
+                    }),
+                    Divider(
+                height: 10,
+              ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0,20,40,0),
+                    child: Container(
+                      width: 70,
+                      height: 70,
+                      decoration: BoxDecoration(
+	                  shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage('assets/plus.png'),
+	                  fit: BoxFit.fill
+                	  ),
+                	  ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 50, 0),
+                    child: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/right-arrow.png'),
+	                  fit: BoxFit.fill
+                	  ),
+                	  ),
+                    ),
+                  ),
+                  Flexible(
+                  child: Text('Click here to open gallery',
+                            style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontFamily: 'OpenSans',
+                            fontWeight: FontWeight.w400,),
+                    ),)
+                  ] 
+
+                ),
+                  
+              ],
+            ),
+            
+          ),
+
+        );
+
+     });
+     }
+    
 }
